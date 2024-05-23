@@ -5,14 +5,14 @@ import matplotlib.pyplot as plt
 class MultiArmedBandit:
     def __init__(self, k=10):
         self.k = k
-        self.q_true = np.random.randn(k)  # True action values
+        self.q_true = np.random.randn(k)  
         self.best_action = np.argmax(self.q_true)
     
     def get_reward(self, action):
         reward = np.random.randn() + self.q_true[action]
         return reward
 
-# Epsilon-Greedy Policy
+
 def epsilon_greedy_bandit(bandit, num_episodes=1000, epsilon=0.1):
     q_estimates = np.zeros(bandit.k)
     action_counts = np.zeros(bandit.k)
@@ -31,7 +31,6 @@ def epsilon_greedy_bandit(bandit, num_episodes=1000, epsilon=0.1):
     
     return rewards, q_estimates
 
-# Upper Confidence Bound (UCB)
 def ucb_bandit(bandit, num_episodes=1000, c=2):
     q_estimates = np.zeros(bandit.k)
     action_counts = np.zeros(bandit.k)
@@ -51,7 +50,6 @@ def ucb_bandit(bandit, num_episodes=1000, c=2):
     
     return rewards, q_estimates
 
-# Q-Learning adapted for bandits
 def q_learning_bandit(bandit, num_episodes=1000, alpha=0.1, epsilon=0.1):
     q_estimates = np.zeros(bandit.k)
     rewards = np.zeros(num_episodes)
@@ -68,7 +66,6 @@ def q_learning_bandit(bandit, num_episodes=1000, alpha=0.1, epsilon=0.1):
     
     return rewards, q_estimates
 
-# Visualization function
 def visualize_bandit_results(epsilon_rewards, ucb_rewards, q_learning_rewards, num_episodes):
     plt.figure(figsize=(12, 8))
     plt.plot(np.cumsum(epsilon_rewards), label='Epsilon-Greedy')

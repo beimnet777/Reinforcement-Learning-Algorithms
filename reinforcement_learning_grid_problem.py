@@ -3,7 +3,6 @@ import gymnasium as gym
 import matplotlib.pyplot as plt
 from matplotlib import colors
 
-# Set up the environment
 env = gym.make('FrozenLake-v1', is_slippery=False)
 
 def value_iteration(env, gamma=0.99, theta=1e-9):
@@ -81,7 +80,6 @@ def ucb_algorithm(env, num_episodes=1000, c=2):
             state = next_state
     return q_table
 
-# Function to visualize the grid and policy
 def visualize_grid_policy(env, policy):
     grid_size = int(np.sqrt(env.observation_space.n))
     policy_grid = np.reshape(policy, (grid_size, grid_size))
@@ -126,7 +124,6 @@ def visualize_grid_policy(env, policy):
     
     plt.show()
 
-# Main function to run the algorithms and visualize the grid
 def main():
     env = gym.make('FrozenLake-v1', is_slippery=False)
     
@@ -143,7 +140,6 @@ def main():
     q_table = q_learning(env)
     print("Q-Learning Q Table:")
     print(q_table)
-    # Assuming the optimal policy from Q-learning would be the action with the highest value for each state
     q_policy = np.argmax(q_table, axis=1)
     visualize_grid_policy(env, q_policy)
 
@@ -154,7 +150,6 @@ def main():
     ucb_q_table = ucb_algorithm(env)
     print("UCB Algorithm Q Table:")
     print(ucb_q_table)
-    # Assuming the optimal policy from UCB would be the action with the highest value for each state
     ucb_policy = np.argmax(ucb_q_table, axis=1)
     visualize_grid_policy(env, ucb_policy)
 
